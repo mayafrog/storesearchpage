@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Untitled Game Store</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="javascripts/search.js" defer></script>
+</head>
+
+<body onload="view_games()">
+    <div id="vue">
+        <h1>Game Store Search Page</h1>
+        <div>
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr class="table-dark">
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Features</th>
+                        <th scope="col">Platform</th>
+                    </tr>
+                </thead>
+                <tbody id="results">
+                </tbody>
+            </table>
+        </div>
+        <div class="bottombar">
+
+            <div class="row" id="advanced_search" v-if="filter_type == 'advanced'">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Name" v-model="name">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Price (Max)" v-model="price">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Genre" v-model="advanced_genre">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Features" v-model="advanced_features">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Platform" v-model="advanced_platform">
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-dark" onclick="advanced_search()">Search</button>
+                </div>
+            </div>
+
+            <div class="row" id="simple_search" v-if="filter_type == 'simple'">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Name" v-model="name">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Price (Max)" v-model="price">
+                </div>
+                <div class="col">
+                    <select class="form-select filter" v-model="simple_genre">
+                        <option value="" selected>Genre</option>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Arena">Arena</option>
+                        <option value="FPS">FPS</option>
+                        <option value="Horror">Horror</option>
+                        <option value="MOBA">MOBA</option>
+                        <option value="Strategy">Strategy</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <select class="form-select filter" v-model="simple_features">
+                        <option value="" selected>Features</option>
+                        <option value="Co-Op">Co-Op</option>
+                        <option value="Multiplayer">Multiplayer</option>
+                        <option value="RGB">RGB</option>
+                        <option value="Single & Multi Player">Single & Multi Player</option>
+                        <option value="Singleplayer">Singleplayer</option>
+                        <option value="VR">VR</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <select class="form-select filter" v-model="simple_platform">
+                        <option value="" selected>Platform</option>
+                        <option value="PC">PC</option>
+                        <option value="PS4">PS4</option>
+                        <option value="PS5">PS5</option>
+                        <option value="Switch">Switch</option>
+                        <option value="XBOX">XBOX</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-dark" onclick="simple_search()">Search</button>
+                </div>
+            </div>
+
+            <div class="row" id="search_type">
+                <select class="form-select" v-model="filter_type">
+                    <option selected value="simple">Simple search</option>
+                    <option value="advanced">Advanced search</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
