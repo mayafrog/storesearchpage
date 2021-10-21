@@ -6,3 +6,5 @@ Steps to run on Ubuntu:
 2. change mysql login details in routes/index.js
 3. install nodejs and dependencies (express, mysql, vue)
 4. run with $ npm start
+
+![Image of application](https://i.imgur.com/b2un7LE.png)
